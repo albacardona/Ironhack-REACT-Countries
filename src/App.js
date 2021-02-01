@@ -1,4 +1,5 @@
 import React from 'react';
+// import axios from 'axios';
 import './App.css';
 
 import {Route} from 'react-router-dom'
@@ -17,18 +18,23 @@ class App extends React.Component {
   }
 
   getCountries = () => {
-    // USING JSON FILE
+    // * USING JSON FILE
     this.setState({countries: countries})
 
-    // TODO: FETCH INFO FROM API (BONUS)
-    // fetch(`https://countries.tech-savvy.tech/countries`)
-    //   .then((result) => {
-    //     return result.json();
-    //   })
-    //   .then((data) => {
-    //     this.setState({countries: data.results});
-    //   })
-    //   .catch((err)=>(err))
+    // TODO: FETCH INFO FROM API (BONUS) => API NOT WORKING
+    // fetch("https://countries.tech-savvy.tech/countries")
+    // .then(result => result.json())
+    // .then(data => this.setState({countries: data}))
+    // .catch(err => (err))
+
+    // TODO: AXIOS GET INFO FROM API (BONUS) => API NOT WORKING
+    // const api = axios.create({
+    //   baseURL: "https://countries.tech-savvy.tech/countries"
+    // })
+
+    // api.get("/")
+    //   .then(res => this.setState({countries: res.data}))
+    //   .catch(err => err)
   }
 
   componentDidMount() {
@@ -45,7 +51,9 @@ class App extends React.Component {
               <CountriesList countries={this.state.countries}/>              
             </div>
             <div className='col-7'>
-              <Route exact path='/:id' component={CountryDetails}/>
+              <Route path='/:id' render={(props) =>
+                (<CountryDetails {...props} countries={this.state.countries} />)}
+              />
             </div>
           </div>          
         </div>

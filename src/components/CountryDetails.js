@@ -1,13 +1,11 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 
-import countries from '../countries.json'
-
 class CountryDetails extends React.Component {
 
   render () {
 
-    const country = countries.find(country => country.cca3 === this.props.match.params.id)
+    const country = this.props.countries.find(country => country.cca3 === this.props.match.params.id)
 
     return (
       <div className='CountryDetails'>
@@ -30,7 +28,7 @@ class CountryDetails extends React.Component {
               <td>
                 <ul>
                   {country.borders.map((border, idx) => {
-                    const countryBorder = countries.find(country => country.cca3 === border)
+                    const countryBorder = this.props.countries.find(country => country.cca3 === border)
                     return (
                       <li key={idx}><Link to={'/' + countryBorder.cca3}>{countryBorder.name.common}</Link></li>
                     )
