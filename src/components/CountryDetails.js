@@ -5,22 +5,23 @@ import countries from '../countries.json'
 
 class CountryDetails extends React.Component {
 
-  country = countries.find(country => country.cca3 === this.props.match.params.id)
-
   render () {
+
+    const country = countries.find(country => country.cca3 === this.props.match.params.id)
+
     return (
       <div className='CountryDetails'>
-        <h1>{this.country.name.common}</h1>
+        <h1>{country.name.common}</h1>
         <table className="table">
           <thead></thead>
           <tbody>
             <tr>
               <td>Capital</td>
-              <td>{this.country.capital}</td>
+              <td>{country.capital}</td>
             </tr>
             <tr>
               <td>Area</td>
-              <td>{this.country.area} km
+              <td>{country.area} km
                 <sup>2</sup>
               </td>
             </tr>
@@ -28,10 +29,10 @@ class CountryDetails extends React.Component {
               <td>Borders</td>
               <td>
                 <ul>
-                  {this.country.borders.map((border, idx) => {
+                  {country.borders.map((border, idx) => {
                     const countryBorder = countries.find(country => country.cca3 === border)
                     return (
-                      <li key={idx}><Link to={countryBorder.cca3}>{countryBorder.name.common}</Link></li>
+                      <li key={idx}><Link to={'/' + countryBorder.cca3}>{countryBorder.name.common}</Link></li>
                     )
                   })}
                 </ul>

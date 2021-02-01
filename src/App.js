@@ -26,12 +26,12 @@ class App extends React.Component {
     //     return result.json();
     //   })
     //   .then((data) => {
-    //     this.setState({countries: data});
+    //     this.setState({countries: data.results});
     //   })
     //   .catch((err)=>(err))
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.getCountries()
   }
 

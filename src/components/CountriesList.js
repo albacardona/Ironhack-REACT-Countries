@@ -8,7 +8,7 @@ class CountriesList extends React.Component {
       <div className="CountriesList">
         <div className="list-group">
           {this.props.countries.map((country, idx) => (
-            <Link to={country.cca3} key={idx} className="list-group-item list-group-item-action">{country.flag} {country.name.common}</Link>
+            <Link to={'/' + country.cca3} key={idx} className="list-group-item list-group-item-action">{country.flag} {country.name.common}</Link>
           ))}
         </div>
       </div>
