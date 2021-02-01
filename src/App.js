@@ -12,6 +12,29 @@ import countries from './countries.json'
 
 class App extends React.Component {
 
+  state= {
+    countries: []
+  }
+
+  getCountries = () => {
+    // USING JSON FILE
+    this.setState({countries: countries})
+
+    // TODO: FETCH INFO FROM API (BONUS)
+    // fetch(`https://countries.tech-savvy.tech/countries`)
+    //   .then((result) => {
+    //     return result.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState({countries: data});
+    //   })
+    //   .catch((err)=>(err))
+  }
+
+  componentDidMount = () => {
+    this.getCountries()
+  }
+
   render () {
     return (
       <div className="App">
@@ -19,10 +42,10 @@ class App extends React.Component {
         <div className='container'>
           <div className='row'>
             <div className='col-5 countries-col'>
-              <CountriesList countryList={countries}/>              
+              <CountriesList countries={this.state.countries}/>              
             </div>
             <div className='col-7'>
-              <Route path='/:id' component={CountryDetails}/>
+              <Route exact path='/:id' component={CountryDetails}/>
             </div>
           </div>          
         </div>
@@ -31,4 +54,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default App
